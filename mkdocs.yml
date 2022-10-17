@@ -1,8 +1,8 @@
 # official tutorial 
 # mkdocs-material: https://squidfunk.github.io/mkdocs-material/
 # mkdocs: https://www.mkdocs.org/user-guide/configuration/
-repo_url: https://github.com/MangataTS/Algorithm
-site_name: Algorithm
+repo_url: https://github.com/Hmifree
+site_name: self-improvement
 theme:
   features:
     - navigation.instant
@@ -84,7 +84,7 @@ extra_javascript:
   #- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra:
-  disqus: Algorithm
+  disqus: self-improvement
 
 nav:
   - Home: 测试/测试程序.md
