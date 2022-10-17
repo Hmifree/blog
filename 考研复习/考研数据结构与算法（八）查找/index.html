@@ -1,0 +1,2140 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../logo.png">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.4">
+    
+    
+      
+        <title>考研数据结构与算法（八）查找 - Algorithm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bb3983ee.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Algorithm" class="md-header__button md-logo" aria-label="Algorithm" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algorithm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              考研数据结构与算法（八）查找
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MangataTS/Algorithm/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        语法基础
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        基础算法
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        数据结构
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        图论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        数论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        字符串
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        动态规划
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        加密算法
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link md-tabs__link--active">
+        考研复习
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Algorithm" class="md-nav__button md-logo" aria-label="Algorithm" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Algorithm
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MangataTS/Algorithm/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          语法基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="语法基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          语法基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          基础算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础算法" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          基础算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          数据结构
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数据结构" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          图论
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="图论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          图论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          数论
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数论" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          数论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          字符串
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="字符串" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          字符串
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          动态规划
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="动态规划" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          动态规划
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          加密算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="加密算法" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          加密算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          杂项
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          考研复习
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="考研复习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          考研复习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
+        测试程序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          考研数据结构与算法（八）查找
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        考研数据结构与算法（八）查找
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    一、基本概念
+  </a>
+  
+    <nav class="md-nav" aria-label="一、基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 查找表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 关键字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 查找
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 平均查找长度
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 平均查找长度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    1.4.1 成功平均查找长度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    1.4.2 失败平均查找长度
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    二、静态查找
+  </a>
+  
+    <nav class="md-nav" aria-label="二、静态查找">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 顺序表（顺序查找）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 有序表（二分查找）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 静态树表（次优查找）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 索引表（分块查找）
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 索引表（分块查找）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241" class="md-nav__link">
+    2.4.1 基本思想
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242" class="md-nav__link">
+    2.4.2 查找步骤
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#243" class="md-nav__link">
+    2.4.3 举例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    三、动态查找
+  </a>
+  
+    <nav class="md-nav" aria-label="三、动态查找">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bst" class="md-nav__link">
+    3.1 二叉排序树（BST）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-avl" class="md-nav__link">
+    3.2 平衡二叉树（AVL）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-bb" class="md-nav__link">
+    3.3 B树和B+树
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-trie" class="md-nav__link">
+    3.5 键树（Trie树）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    四、哈希表（散列表）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    五、错题
+  </a>
+  
+    <nav class="md-nav" aria-label="五、错题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 选择题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+<a href="https://github.com/MangataTS/Algorithm/edit/master/docs/考研复习/考研数据结构与算法（八）查找.md" title="编辑此页" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="_1">考研数据结构与算法（八）查找<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">一、基本概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 查找表<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>用于查找的数据集合称为查找表，它由 <strong>同一类型</strong> 的数据元素（或记 录〉组成，可以是一个数组或链表等数据类型。</p>
+<p>查找表中常用的四种操作
+- ①查询某个 <strong>特定的数据元素</strong> 是否在查找表中
+- ②检索满足条件的某个特定的数据元素的其他属性
+- ③在查找表中 <strong>插入</strong> 一个数据元素
+- ④从查找表中 <strong>删除</strong> 某个数据元素</p>
+<p>只进行查找（检索）操作（即查找表的前两种操作）的表另称为 <strong>静态查找表</strong> ，如果需要进行 <strong>删除</strong> 或者 <strong>插入</strong> 操作，那么此表另称为 <strong>动态查找表</strong></p>
+<h3 id="12">1.2 关键字<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>对于一个数据元素，可能是多个值构成的，<strong>每一个值都是一个关键字</strong>，如果一个关键字在查找表里可以 <strong>唯一的标识</strong> 一个记录，那么我们称其为 <strong>主关键字</strong> ，若不能唯一标识我们则称其为 <strong>次关键字</strong></p>
+<h3 id="13">1.3 查找<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>根据某个给定的值，在查找表寻找满足条件的过程称为查找，查找的结果一般分为两种：
+- 查找成功
+- 查找失败</p>
+<h3 id="14">1.4 平均查找长度<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>在查找过程中，一次查找的长度是指需要 <strong>比较的关键字次数</strong> ，而平均查找长度则是所有查找过程中进行关键字的比较次数的平均值，<strong>一般来说</strong> 这个平均长度是指 <strong>平均成功查找长度</strong> 因为查找不成功的情况我们一般忽略掉了，但是如果我们不能忽略查找失败的情况，那么某个算法的 <strong>平均查找长度=成功平均查找长度 + 失败平均查找长度</strong></p>
+</blockquote>
+<h4 id="141">1.4.1 成功平均查找长度<a class="headerlink" href="#141" title="Permanent link">&para;</a></h4>
+<p><strong>注意：这个在所有的查找表的题目中都会考到，后面对于每一个表都会进行分析</strong></p>
+<p>我们假设 <span class="arithmatex">\(n\)</span> 是查找表的长度， <span class="arithmatex">\(P_i\)</span> 是查找第 <span class="arithmatex">\(i\)</span> 个数据元素的概率（一般认为每一个数据元素查找的概率相等，即 <span class="arithmatex">\(P_i = 1/n\)</span>） ，<span class="arithmatex">\(C_i\)</span> 是找到第 <span class="arithmatex">\(i\)</span> 个数据元素所需要进行的比较次数，则其数学定义为：</p>
+<div class="arithmatex">\[
+ASL_{成功}=\sum_{i=1}^nP_iC_i
+\]</div>
+<h4 id="142">1.4.2 失败平均查找长度<a class="headerlink" href="#142" title="Permanent link">&para;</a></h4>
+<p><strong>注意：这个只在二叉排序树or哈希表中可能会考到，后面也会一一解析</strong></p>
+<p>对于一个查找表来说，假设对于查找某个不存在的元素的概率为 <span class="arithmatex">\(P_i\)</span> ，对每一个不存在的元素查找所需要进行的比较次数为 <span class="arithmatex">\(C_i\)</span> ，假设我们有 <span class="arithmatex">\(m\)</span> 个不存在的元素，那么我们可以得到其数学定义：</p>
+<div class="arithmatex">\[
+ASL_{失败}=\sum_{i=1}^mP_iC_i
+\]</div>
+<p>这里其实不够形象，可以不用在意，后面会具体例子具体解析的~</p>
+<h2 id="_3">二、静态查找<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 顺序表（顺序查找）<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>简单理解为，我们将元素存储在一个线性表中，这个线性表可以是数组也可以是链表，反正无论如何我们都是要从头到尾遍历，除非遇到我们需要查找的元素，我们就将元素返回，否则我们就继续往下遍历，最后没找到的话，我们可以返回一个 <code>-1</code> 或者其他非元素集合下标</p>
+<p>关于代码的话一般有两种写法，第一种则是王道书上介绍的 “哨兵” 写法，我们将线性表中第 <span class="arithmatex">\(0\)</span> 个位置设定为我们想要找的元素（即线性表中的元素是 <span class="arithmatex">\([1,n]\)</span> 范围的），然后从线性表的末尾往前查找，即便 <span class="arithmatex">\([1,n]\)</span> 范围内没有我们需要的元素，也会在第 <span class="arithmatex">\(0\)</span> 个位置停止，此时我们对于函数返回的值做判断只要是 <span class="arithmatex">\(0\)</span> 那么就说明没找到</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="p">{</span><span class="err">／／</span><span class="n">查找表的数据结构</span><span class="w"></span>
+<span class="w">    </span><span class="n">ElemType</span><span class="w"> </span><span class="o">*</span><span class="n">elem</span><span class="p">;</span><span class="w"> </span><span class="c1">//元素存储空间基址，建表时按实际长度分配，0 号单元留空</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TableLen</span><span class="p">;</span><span class="w">   </span><span class="c1">//表的长度</span>
+<span class="p">}</span><span class="n">SSTable</span><span class="p">;</span><span class="w"> </span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">Search_Seq</span><span class="p">(</span><span class="n">SSTable</span><span class="w"> </span><span class="n">ST</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">ElemType</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">key</span><span class="p">;</span><span class="w"> </span><span class="c1">//“哨兵” </span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST</span><span class="p">.</span><span class="n">TableLen</span><span class="p">;</span><span class="w"> </span><span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="err">／／</span><span class="n">从后往前找</span><span class="w"> </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="err">／／</span><span class="n">若表中不存在关键字为</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">的元素</span><span class="err">，</span><span class="n">将查找到</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">为</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">时退出</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">循环</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>当然如果说我们想要元素从 <span class="arithmatex">\(0\)</span> 这个位置开始存储的话，可以不不使用 “哨兵” ，代码如下</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="p">{</span><span class="err">／／</span><span class="n">查找表的数据结构</span><span class="w"></span>
+<span class="w">    </span><span class="n">ElemType</span><span class="w"> </span><span class="o">*</span><span class="n">elem</span><span class="p">;</span><span class="w"> </span><span class="c1">//元素存储空间基址，建表时按实际长度分配</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TableLen</span><span class="p">;</span><span class="w">   </span><span class="c1">//表的长度</span>
+<span class="p">}</span><span class="n">SSTable</span><span class="p">;</span><span class="w"> </span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">Search_Seq</span><span class="p">(</span><span class="n">SSTable</span><span class="w"> </span><span class="n">ST</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">ElemType</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST</span><span class="p">.</span><span class="n">TableLen</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="err">／／</span><span class="n">从后往前找</span><span class="w"> </span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">ST</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="err">／／</span><span class="n">表中找到关键字</span><span class="w"> </span><span class="n">key</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="c1">//表中未找到关键字</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>对于这样的一个查找方法，我们来分析一下它的平均查找长度：
+- 对于查找第 <span class="arithmatex">\(i\)</span> 个元素，如果我们逆着查找那么需要比较 <span class="arithmatex">\(n-i+1\)</span> 次，顺着看实际上我们就需要比较 <span class="arithmatex">\(i\)</span> 次，不管是顺着还是逆着，当我们求平均的时候结果都是一样的，但是显然顺着的方式比较好求一点
+- 又由于每一个元素查找的可能都是一样的即 <span class="arithmatex">\(\frac{1}{n}\)</span> 于是 <span class="arithmatex">\(P_i = \frac{1}{n}\)</span> ，那么对于顺序查找的平均长度就为：</p>
+<div class="arithmatex">\[
+ASL_{成功} = \sum_{i=1}^nP_ii = \frac{n+1}{2}
+\]</div>
+<p>当然上式子若是逆着查找的话应该这么写：</p>
+<div class="arithmatex">\[
+ASL_{成功} = \sum_{i=1}^nP_i(n-i+1) = \frac{n+1}{2}
+\]</div>
+<p>反正结果是一样的啦~</p>
+<p>我们 <strong>考虑一下查找失败的情况</strong> ，假设查找失败的概率和查找成功的概率一样，那么对于查找失败的情况来说每一次查找的概率是和已经有元素一样即 <span class="arithmatex">\(P_i = \frac{1}{2n}\)</span> ，而每次匹配的次数都是 <span class="arithmatex">\(n\)</span> 次（ <strong>从头到尾匹配完，这里使用的是非哨兵模式</strong> ），那么失败平均匹配长度为：</p>
+<div class="arithmatex">\[
+ASL_{失败} = \sum_{i=1}^nP_i(n) = \frac{n}{2}
+\]</div>
+<p>此时的成功平均匹配长度为：</p>
+<div class="arithmatex">\[
+ASL_{成功} = \sum_{i=1}^nP_ii = \frac{n+1}{4}
+\]</div>
+<p>所以平均匹配长度为：</p>
+<div class="arithmatex">\[
+ASL_{平均} = ASL_{成功} + ASL_{失败} =  \frac{n+1}{4} + \frac{n}{2} = \frac{3n + 1}{4}
+\]</div>
+<p>假设我们的顺序表是一个有序表的话，那么我们进行失败匹配的过程中会减少一点，假设我们走到了一个大于查找的 <code>key</code> 的第一个位置，因为顺序表是一个有序的，那么我们现在就需要停止，那么对于第 <span class="arithmatex">\(i\)</span> 个未查找到的元素我们需要比较 <span class="arithmatex">\(i+1\)</span> 次，那么对于匹配失败的概率是 <span class="arithmatex">\(\frac{1}{2n}\)</span> ，匹配失败的长度为 </p>
+<div class="arithmatex">\[
+C_i =
+\begin{cases} 
+i+1,  &amp; \text{if} \ i&lt;n \\
+n, &amp; \text{if} \ i=n
+\end{cases}
+\]</div>
+<p>那么对于失败匹配的平均长度为：</p>
+<div class="arithmatex">\[
+ASL{失败}=\sum_{i=1}^nP_iC_i = \frac{1}{2n}\sum{i=1}C_i = \frac{1+2+3+……+n+n}{2n} = \frac{n+3}{4}
+\]</div>
+<p>假设对于一个 <span class="arithmatex">\(n\)</span> 为 <span class="arithmatex">\(10\)</span> 的顺序表而言，如果是乱序，那么其失败查找长度为： <span class="arithmatex">\(5\)</span> ，若是有序的话，其失败匹配平均长度为 <span class="arithmatex">\(\frac{13}{4}\)</span> ，可以看得出确实有一定提升</p>
+<blockquote>
+<p>注意：
+- 一般来说，仅讨论 <strong>查找成功的平均查找长度</strong> 或者是 <strong>查找不成功的比较次数</strong>
+- 上面所用例子以及匹配此时可能和 王道/严蔚敏 书上有所不同，不同点其实就在于比较次数</p>
+</blockquote>
+<h3 id="22">2.2 有序表（二分查找）<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>这一块着重于介绍二分查找（折半查找）这一算法，能够在有序表中高效的查找我们所需的信息，详细的讲解可以观看下面的博客（内附视频）
+<a href="https://acmer.blog.csdn.net/article/details/118559948">https://acmer.blog.csdn.net/article/details/118559948</a></p>
+<p>举一个二分查找的例子，假设有如下的序列 <span class="arithmatex">\(a\)</span> ：</p>
+<div class="arithmatex">\[
+\{7, 10, 13 , 16, 19, 29, 32 , 33 , 37, 41 , 43 \}
+\]</div>
+<p>简单绘画一下（下标从 <span class="arithmatex">\(1\)</span> 开始）</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/631be57a1f914f12b2c4ff546ea5a507.png" /></p>
+<p>假设我们要查找 <span class="arithmatex">\(32\)</span> 这个元素，那么查找过程如下：</p>
+<ul>
+<li>第一次查找：<span class="arithmatex">\(mid = \left \lfloor \frac{\text{left}+\text{right}}{2} \right \rfloor =\left \lfloor \frac{1+11}{2} \right \rfloor = 6\)</span> 于是我们就将 <span class="arithmatex">\(a[6]\)</span> 和 <span class="arithmatex">\(32\)</span> 进行比较，我们发现 <span class="arithmatex">\(a[6] &lt; 32\)</span> 于是我们将 <span class="arithmatex">\(left\)</span> 更新，即 <span class="arithmatex">\(left = mid + 1 = 7\)</span> ，<span class="arithmatex">\(right\)</span> 不变，还是 <span class="arithmatex">\(11\)</span> </li>
+</ul>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/97c50e165cee456a8d799c60dd3c5020.png" /></p>
+<ul>
+<li>第二次查找： <span class="arithmatex">\(mid = \left \lfloor \frac{\text{left}+\text{right}}{2} \right \rfloor =\left \lfloor \frac{7+11}{2} \right \rfloor = 9\)</span> 于是我们将 <span class="arithmatex">\(a[9]\)</span> 和 <span class="arithmatex">\(32\)</span> 进行比较，我们发现 <span class="arithmatex">\(a[9] &gt; 32\)</span> 于是我们将 <span class="arithmatex">\(right\)</span> 更新，即 <span class="arithmatex">\(right = mid - 1 = 8\)</span> ， <span class="arithmatex">\(left\)</span> 不变，还是 <span class="arithmatex">\(7\)</span></li>
+</ul>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/9e52d9631143496db8e28c31ff5b7dca.png" /></p>
+<ul>
+<li>第三次查找： <span class="arithmatex">\(mid = \left \lfloor \frac{\text{left}+\text{right}}{2} \right \rfloor =\left \lfloor \frac{7+8}{2} \right \rfloor = 7\)</span> 于是我们将 <span class="arithmatex">\(a[7]\)</span> 和 <span class="arithmatex">\(32\)</span> 进行比较，我们发现 <span class="arithmatex">\(a[9] = 32\)</span> 此时我们就找到了这个元素，那么我们将当前位置返回，至此查找完成~</li>
+</ul>
+<p>其实二分查找的过程可以看作为一颗二叉树，我们称其为 <strong>判定树</strong> ， 我们画出上面序列的判定树，不难发现这颗判定树是一颗 <strong>平衡二叉树</strong> </p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/cbc96991f1d549139ecc36380dec3d87.png" /></p>
+<p>在这棵二叉树中：树中每个<strong>圆形结点表示一个记录</strong>， 结点中的值为该记录的关键字值；树中最下面的叶结点都是 <strong>方形</strong> 的，它 <strong>表示查找不成功</strong> 的情况。</p>
+<p>用折半查找法查找到给定值的比较次数最多不会超过 <strong>树的高度</strong> 。在 <strong>等概率</strong> 查找时，设 <span class="arithmatex">\(h\)</span> 为该判定树的高度，且当树中元素个数为 <span class="arithmatex">\(n\)</span> 时判定树高 <span class="arithmatex">\(h = \left \lceil log_2(n+1) \right \rceil\)</span> 或者是 <span class="arithmatex">\(\left \lfloor log_2(n) \right \rfloor + 1\)</span>， 查找成功的平均查找长度为：</p>
+<div class="arithmatex">\[
+ASL_{成功} = \frac{1}{n}\sum_{i=1}^nL_i=\frac{1\times 1 + 2\times 2 + 3\times 3 + …… + h \times 2^{h-1}}{n} = \frac{n+1}{n}log_2(n+1)-1 ≈ log_2(n+1)-1
+\]</div>
+<p>对于查找失败的平均长度，也就是到达方框位置的情况，假设有 <span class="arithmatex">\(m\)</span> 中情况，且同样为等概率到达，则 <span class="arithmatex">\(P_i = \frac{1}{m}\)</span> 假设每一层中的 <strong>方形结点数</strong> 为 <span class="arithmatex">\(D_i\)</span> ，那么就能得到查找失败的平均查找长度为：</p>
+<div class="arithmatex">\[
+ASL_{失败} = \frac{1}{m}\sum_{i=1}^nL_i = \frac{1\times D_1 + 2\times D_2 + 3\times D_3 + …… + h \times D_h}{m}
+\]</div>
+<h3 id="23">2.3 静态树表（次优查找）<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>目前先 <code>pass</code> 不在大纲中，看后面二轮复习有无时间补上空缺~</p>
+<h3 id="24">2.4 索引表（分块查找）<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<h4 id="241">2.4.1 基本思想<a class="headerlink" href="#241" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>将查找表分为若干子块。 <strong>块内的元素可以无序，但块之间是有序的</strong> ，即第一个块中的最大关键字小于第二个块中的所有记录的关键字，第二个块中的最大关键字小于第三个块中的所有记录的关键字，以此类推。再建立一个索引表，索引表中的每个元素含有各块的最大关键字和各块中的第一个元素的地址，索引表按关键字有序排列。</p>
+</blockquote>
+<h4 id="242">2.4.2 查找步骤<a class="headerlink" href="#242" title="Permanent link">&para;</a></h4>
+<ul>
+<li>①第一步是在索引表中确定待查记录所在的块</li>
+<li>②再块内顺序查找</li>
+</ul>
+<h4 id="243">2.4.3 举例<a class="headerlink" href="#243" title="Permanent link">&para;</a></h4>
+<p>假设我们有这样的查找集合： <span class="arithmatex">\(\{88, 24, 72, 61, 21 , 6, 32, 11 , 8, 31, 22, 83, 78, 54\}\)</span></p>
+<ul>
+<li>按照关键字我们分为四个块： <span class="arithmatex">\(24、54、78、88\)</span></li>
+</ul>
+<p>如下图所示：</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/b53642158554470dad9bd8da63c6106b.png" /></p>
+<p><strong>ps：这里的索引表构造可以有多种情况</strong></p>
+<ul>
+<li>若是我们想要找 <span class="arithmatex">\(61\)</span> 那么我们就需要先去在索引表中顺序查找（或是二分查找）我们所需的元素可能出现在哪一块，我们发现 <span class="arithmatex">\(61\)</span> 大于第二块表的最大值，并且小于第三块表的最大值，那么 <span class="arithmatex">\(61\)</span> 就 <strong>可能存在</strong> 第三块表中</li>
+<li>于是我们从下标 <span class="arithmatex">\(10\)</span> 开始查找一直到 <span class="arithmatex">\(12\)</span> （即这一块的范围），因为表内可能是乱序的，于是我们使用顺序查找的方法，然后找到了 <span class="arithmatex">\(61\)</span> 的下标为 <span class="arithmatex">\(11\)</span> 
+这就是一个查找的过程</li>
+</ul>
+<p>现在我们接着来分析一下分块查找的平均成功查找长度，很显然这是两个查找过程，索引表查找以及块内查找，那么假设设索引查找和块内查找的平均查找长度分别为 <span class="arithmatex">\(Li,Ls\)</span> 那么分块查找的平均成功查找长度为（ <strong>因为一般情况下只考虑成功的情况，于是也可以叫做平均查找长度，即忽略了查找失败的情况</strong> ）：</p>
+<div class="arithmatex">\[
+ASL_{成功} = L_i + L_s
+\]</div>
+<p>将长度度为 <span class="arithmatex">\(n\)</span> 的查找表均匀地分为 <span class="arithmatex">\(b\)</span> 块， 每块有 <span class="arithmatex">\(s\)</span> 个记录，在等概率情况下，若在块内和索引表中均采用顺序查找，则平均查找长度为：</p>
+<div class="arithmatex">\[
+ASL_{成功} = L_i + L_s = \frac{b+1}{2} + \frac{s+1}{2} = \frac{s^2+2s+n}{2s}
+\]</div>
+<p>ps: </p>
+<div class="arithmatex">\[
+∵sb=n \\
+∴ b = \frac{n}{s}
+\]</div>
+<p>此时，如果 <span class="arithmatex">\(s = \sqrt{n}\)</span> ，那么平均(成功)查找长度取得最小值 <span class="arithmatex">\(\sqrt{n}+1\)</span> ，若是对索引表进行二分查找加速的话，那么平均查找长度可为：</p>
+<div class="arithmatex">\[
+ASL = L_i + L_s =  \left \lceil log_2(b+1) \right \rceil + \frac{s+1}{2}
+\]</div>
+<h2 id="_4">三、动态查找<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="31-bst">3.1 二叉排序树（BST）<a class="headerlink" href="#31-bst" title="Permanent link">&para;</a></h3>
+<p>算法小讲堂之二叉排序树|二叉搜索树|BST：<a href="https://acmer.blog.csdn.net/article/details/126607632">https://acmer.blog.csdn.net/article/details/126607632</a></p>
+<h3 id="32-avl">3.2 平衡二叉树（AVL）<a class="headerlink" href="#32-avl" title="Permanent link">&para;</a></h3>
+<p>算法小讲堂之平衡二叉树|AVL树（超详细~）: <a href="https://acmer.blog.csdn.net/article/details/126641989">https://acmer.blog.csdn.net/article/details/126641989</a></p>
+<h3 id="33-bb">3.3 B树和B+树<a class="headerlink" href="#33-bb" title="Permanent link">&para;</a></h3>
+<p>算法小讲堂之B树和B+树（浅谈）|考研笔记 ：<a href="https://acmer.blog.csdn.net/article/details/126688618">https://acmer.blog.csdn.net/article/details/126688618</a></p>
+<h3 id="35-trie">3.5 键树（Trie树）<a class="headerlink" href="#35-trie" title="Permanent link">&para;</a></h3>
+<p><code>Trie</code> (字典)树详解：<a href="https://acmer.blog.csdn.net/article/details/120058928">https://acmer.blog.csdn.net/article/details/120058928</a></p>
+<h2 id="_5">四、哈希表（散列表）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>算法小讲堂之哈希表|散列表|考研笔记：
+<a href="https://acmer.blog.csdn.net/article/details/126689556">https://acmer.blog.csdn.net/article/details/126689556</a></p>
+<h2 id="_6">五、错题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 选择题<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+
+              
+  <!-- Giscus -->
+  <h2 id="__comments">评论</h2>
+  <!-- Replace with generated snippet -->
+  <script src="https://giscus.app/client.js"
+        data-repo="MangataTS/Algorithm"
+        data-repo-id="R_kgDOGpOt2Q"
+        data-category="General"
+        data-category-id="DIC_kwDOGpOt2c4CN6ks"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+  <!-- Reload on palette change -->
+  <script>
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object")
+      if (palette.color.scheme === "slate") {
+        var giscus = document.querySelector("script[src*=giscus]")
+        giscus.setAttribute("data-theme", "dark") 
+      }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="页脚">
+      
+        
+        <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 测试程序" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              测试程序
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; power by Kaptree
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "header.autohide", "navigation.top", "toc.integrate", "content.code.annotate", "toc.follow", "navigation.indexes"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "search": "../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      
+        <script src="../../javascripts/cheat.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
