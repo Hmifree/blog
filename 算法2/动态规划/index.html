@@ -13,7 +13,7 @@
     
     
       
-        <title>考研数据结构与算法（五）数组 - Algorithm</title>
+        <title>动态规划 - Algorithm</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              考研数据结构与算法（五）数组
+              动态规划
             
           </span>
         </div>
@@ -196,13 +196,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+      <a href="../%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/" class="md-tabs__link md-tabs__link--active">
         语法基础
       </a>
     </li>
@@ -425,12 +427,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -461,8 +465,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
-        None
+      <a href="../%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        二分算法
       </a>
     </li>
   
@@ -473,11 +477,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
-        None
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          动态规划
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        动态规划
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    测试哦
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1592,107 +1637,14 @@
               
   
                 
-<a href="https://github.com/MangataTS/Algorithm/edit/master/docs/考研复习/考研数据结构与算法（五）数组.md" title="编辑此页" class="md-content__button md-icon">
+<a href="https://github.com/MangataTS/Algorithm/edit/master/docs/算法2/动态规划.md" title="编辑此页" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="_1">考研数据结构与算法（五）数组<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">一、数组的定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>数组是由 <span class="arithmatex">\(n(n &gt;= 1)\)</span> 个相同类型的数据元素构成的有限序列，每个数据元素称为一个数组元素，每个元素在 <span class="arithmatex">\(n\)</span> 个线性关系中的序号称为该元素的下标，下标的取值范围称为数组的维界</p>
-</blockquote>
-<p>数组和线性表的关系：数组是 <strong>线性表的推广</strong> 。一维数组可视为一个线性表；二维数组可视为其元素也是定长线性表的线性表，以此类推。数组一旦被定义，其维数和维界就不再改变。因此，除结构的初始化和销毁外，数组只会有存取元素和修改元素的操作。 </p>
-<h2 id="_3">二、二维数组的存储方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>对于数组而言占用的内存是一个连续的空间，那么在二维数组或者是多维数组的情况，对于地址映射的方式大题分为两种：</p>
-<h3 id="21">2.1 按行优先<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
-<p>顾名思义，我们元素地址是一行一行的填充，那么假设当前的二维数组是一个 <span class="arithmatex">\(N\times N\)</span> 的结构（下标从0开始），每一个元素占用 <span class="arithmatex">\(L\)</span> 的空间，那么假设我们要求 <span class="arithmatex">\(a[i][j]\)</span> 的地址的话：</p>
-<p><span class="arithmatex">\(Loc_{a[i][j]} = Loc_{a[0][0]} + [i\times n + j] \times L\)</span></p>
-<h3 id="22">2.2 按列优先<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
-<p>这样的话我们是一列一列的填充，那么和上面的假设一样的话，要想求 <span class="arithmatex">\(a[i][j]\)</span> 的地址，则需要小小的变化：</p>
-<p><span class="arithmatex">\(Loc_{a[i][j]} = Loc_{a[0][0]} + [j\times n + i] \times L\)</span></p>
-<h2 id="_4">三、特殊矩阵和压缩矩阵<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="31">3.1 特殊矩阵<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
-<p>一个二维矩阵可以根据主对角线分为上三角区和下三角区：</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/87a7c50f37fc447ba09deabfe45e55ee.png" /></p>
-<h4 id="311">3.1.1 对称矩阵<a class="headerlink" href="#311" title="Permanent link">&para;</a></h4>
-<p>如果对于一个二维矩阵而言，其中所有单位元素满足：<span class="arithmatex">\(a[i][j] = a[j][i] (1&lt;=i,j&lt;=n)\)</span> 那么就称其为对称矩阵，顾名思义就是沿着对角线对称，如下图所示</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/ab86062344ff406dad5b5d681bad59c4.png" /></p>
-<p>由于存在这样的结构，那么我们可以发现空间是重复了，为了提高空间利用率，我们将这个二维数组压缩到一个一维数组里面，那么我们其实可以发现我们只需要保存上三角区或者下三角区的数据就能完整的恢复整个矩阵的数据，这样的话我们就节约了近一半的空间，于是我们将元素 <span class="arithmatex">\(a[i][j]\)</span> 存放到一位数组 <span class="arithmatex">\(b[k]\)</span> 的位置，那么 <span class="arithmatex">\(k\)</span> 和 <span class="arithmatex">\(i、j\)</span> 的关系为（这里的 <span class="arithmatex">\(i、j\)</span> 从 <span class="arithmatex">\(1\)</span> 开始，而 <span class="arithmatex">\(k\)</span> 从 0开始）：</p>
-<div class="arithmatex">\[
-k = \begin{cases}
-\frac{i(i-1)}{2}+j-1, &amp; \text {i&gt;=j，下三角区} \\
-\frac{j(j-1)}{2}+i-1, &amp;\text{i&lt;j，上三角区}
-\end{cases}
-\]</div>
-<h4 id="312">3.1.2 上（下）三角矩阵<a class="headerlink" href="#312" title="Permanent link">&para;</a></h4>
-<p>下三角矩阵其实就是上三角区全部为相同常量的一个矩阵，这个存储方式和压缩方式和上面的对称矩阵类似，只需要使用一半的空间即可，压缩后的元素下标之间的对应关系如下：</p>
-<div class="arithmatex">\[
-k = \begin{cases}
-\frac{i(i-1)}{2}+j-1, &amp; \text {i&gt;=j，下三角区} \\
-\frac{n(n+1)}{2}, &amp;\text{i&lt;j，上三角区}
-\end{cases}
-\]</div>
-<p>那么我们会发现这里的空间比上面的对称矩阵多一个，即 <span class="arithmatex">\((n+1)n/2 + 1\)</span> ，这里多出来的也就是存储整个上三角区的数据，下三角矩阵在一维数组的压缩存储如下：</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/13714438569c473582d29c59813e3887.png" /></p>
-<p>那么上三角矩阵也就是同理了</p>
-<div class="arithmatex">\[
-k = \begin{cases}
-\frac{i(2n-i+1)}{2}-n+j - 1, &amp; \text {i&lt;=j，上三角区} \\
-\frac{n(n+1)}{2}, &amp;\text{i&lt;j，下三角区}
-\end{cases}
-\]</div>
-<h4 id="313">3.1.3 稀疏矩阵<a class="headerlink" href="#313" title="Permanent link">&para;</a></h4>
-<p>稀疏矩阵其实只是一个概念性的东西，也就是在一个矩阵中有效的数据元素很少的矩阵，就称为稀疏矩阵，假设在一个 <span class="arithmatex">\(m\times n\)</span> 的矩阵中，有 <span class="arithmatex">\(t\)</span> 个元素不为 <span class="arithmatex">\(0\)</span> ，令 <span class="arithmatex">\(k = \frac{t}{m\times n}\)</span> ，则 <span class="arithmatex">\(k\)</span> 为矩阵的 <strong>稀疏因子</strong> ，通常认为当 <span class="arithmatex">\(k&lt;=0.05\)</span> 的时候称为稀疏矩阵。</p>
-<p>那么对于一个稀疏矩阵我们应当如何压缩呢，其实我们可以只需要存储稀疏矩阵中不为 <span class="arithmatex">\(0\)</span> 的元素的特征，如行、列、值三个信息，这样就构成了一个三元组，我们只需要存储这些有意义的三元组即存储了整个矩阵，例如：</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/796281cc75974b1a97ffbd8a1a8228c4.png" /></p>
-<p>这就是一个简单的例子</p>
-<h4 id="314">3.1.4 三对角矩阵<a class="headerlink" href="#314" title="Permanent link">&para;</a></h4>
-<p>对角矩阵也称带状矩阵。对于一个 <span class="arithmatex">\(n\)</span> 阶矩阵 <span class="arithmatex">\(A\)</span> 中任意元素 <span class="arithmatex">\(a_{i,j}\)</span> ，当 <span class="arithmatex">\(|i-j| &gt; 1\)</span> 时，有 <span class="arithmatex">\(a_{i,j} = 0 (1&lt;=i,j&lt;=n)\)</span> 则称为三对角矩阵，在三对角矩阵中所有非零元素都集中在以主对角线为中心的三条线的区域。</p>
-<p>结构如图：</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/c9467e6744084299849896bca531a409.png" /></p>
-<p>如果想将这样一个矩阵压缩到一维数组中，实际上我们不难发现这样一个规律，元素 <span class="arithmatex">\(i,j\)</span> 和 <span class="arithmatex">\(k\)</span> 的关系为：</p>
-<p><span class="arithmatex">\(k = 2i + j - 3\)</span></p>
-<p>结构如图：</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/96c8f0891bbf4df8a854afe77f13b980.png" /></p>
-<p>反之，若知道元素 <span class="arithmatex">\(a[i][j]\)</span> 存放在一维数组中的第 <span class="arithmatex">\(k\)</span> 个位置的话，可以得到： </p>
-<p>$$
-i = \left \lfloor (k+1)/3 + 1 \right \rfloor,j = k - 2i + 3
-$$
-例如，当 <span class="arithmatex">\(k\)</span> 等于 <span class="arithmatex">\(0\)</span> 的时候，<span class="arithmatex">\(i = \left \lfloor (0+1)/3 + 1 \right \rfloor = 1，j = 0-2\times 1 + 3 = 1\)</span> 即第一个位置存放的是矩阵元素 <span class="arithmatex">\(a[1][1]\)</span>  </p>
-<h2 id="_5">四、广义表的定义和存储结构<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h3 id="41">4.1 广义表的定义<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
-<p><code>广义表</code>，又称列表，也是一种线性存储结构，既可以存储不可再分的元素，也可以存储广义表，记作：<span class="arithmatex">\(LS = (a_1,a_2,…,a_n)\)</span> ，其中，LS 代表广义表的名称，<span class="arithmatex">\(a_n\)</span> 表示广义表存储的数据，广义表中每个 <span class="arithmatex">\(a_i\)</span> 既可以代表 <strong>单个元素</strong> ，也可以代表另一个 <strong>广义表</strong> ,分别称为广义表 <span class="arithmatex">\(LS\)</span> 的 <strong>原子</strong> 和 <strong>子表</strong></p>
-<p>之前我们讲到的线性表其中的元素就是单一的，只能为相同元素结构，而广义表对于每一个单元，都允许其数据类型不同，甚至是另一个广义表</p>
-<h3 id="42">4.2 广义表的存储结构<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
-<p>正是由于广义表这种每个单元的数据元素结构可以不同，因此很难使用顺序存储结构，一半多使用链式存储结构，对于每个结点而言，其中的值并不重要，只需要通过指针串联起来即可</p>
-<p>那么一个<strong>表结点</strong>可以由三个部分构成：标识域、指示表头的指针域和表尾的指针域，而 <strong>原子结点</strong> 只需要标识域和值域，于是我们得到了一个大概的结构：</p>
-<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="p">{</span><span class="n">ATOM</span><span class="p">,</span><span class="n">LIST</span><span class="p">}</span><span class="n">ElemTag</span><span class="p">;</span><span class="c1">//ATOM=0表示原子结点，ATOM=1表示子表</span>
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">GLNode</span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">ElemTag</span><span class="w"> </span><span class="n">tag</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">union</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">ATomType</span><span class="w"> </span><span class="n">atom</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="k">struct</span><span class="w"> </span><span class="nc">GLNode</span><span class="w"> </span><span class="o">*</span><span class="n">hp</span><span class="p">,</span><span class="o">*</span><span class="n">tp</span><span class="p">}</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">};</span><span class="w"></span>
-<span class="p">}</span><span class="o">*</span><span class="n">Glist</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-<h3 id="43">4.3 广义表的深度和长度<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>广义表的长度，指的是<code>广义表中所包含的数据元素的个数</code>。</p>
-</li>
-<li>
-<p>计算元素个数时，广义表中存储的每个原子算作一个数据，同样每个子表也只算作是一个数据</p>
-<ul>
-<li><span class="arithmatex">\(LS = {a_1,a_2,…,a_n}\)</span>  的长度为 <span class="arithmatex">\(n\)</span> ；</li>
-<li>广义表 <span class="arithmatex">\({a,{b,c,d}}\)</span> 的长度为 2；</li>
-<li>广义表 <span class="arithmatex">\({{a,b,c}}\)</span> 的长度为 1；</li>
-<li>空表 <span class="arithmatex">\({}\)</span> 的长度为 0。</li>
-</ul>
-</li>
-</ul>
-<p>广义表的深度，可以通过观察该表中所包含括号的层数间接得到，也就是表的层数，线性表的深度就是一层，如下示例，该广义表的深度为2。</p>
-<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/9eb56211dcb34202a23afe3201ec5145.png" /></p>
+<h1 id="_1">动态规划<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">测试哦<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>哈哈哈哈</p>
 
               
   <!-- Giscus -->
@@ -1752,6 +1704,41 @@ $$
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="页脚">
+      
+        
+        <a href="../%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 二分算法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              二分算法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-footer__link md-footer__link--next" aria-label="下一页: None" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              None
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -13,7 +13,7 @@
     
     
       
-        <title>关键路径 - Algorithm</title>
+        <title>二分算法 - Algorithm</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              关键路径
+              二分算法
             
           </span>
         </div>
@@ -196,13 +196,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         语法基础
       </a>
     </li>
@@ -425,12 +427,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -459,11 +463,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
-        None
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          二分算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        二分算法
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    测试二分算法
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -475,8 +520,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-nav__link">
-        None
+      <a href="../%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        动态规划
       </a>
     </li>
   
@@ -1592,199 +1637,13 @@
               
   
                 
-<a href="https://github.com/MangataTS/Algorithm/edit/master/docs/图论/关键路径.md" title="编辑此页" class="md-content__button md-icon">
+<a href="https://github.com/MangataTS/Algorithm/edit/master/docs/算法2/二分算法.md" title="编辑此页" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="_1">关键路径<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">前言<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="aoe">AOE网<a class="headerlink" href="#aoe" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>在带权有向图中， 以顶点表示 <strong>事件</strong> ，以 <strong>有向边</strong> 表示 <strong>活动</strong> ，以 <strong>边上的权值</strong> 表示完成该活动的开销（如完成活动所需的时间），称之为用边表示活动的网络，简称 <span class="arithmatex">\(AOE\)</span> 网</p>
-</blockquote>
-<p><span class="arithmatex">\(AOE\)</span> 网和 <span class="arithmatex">\(AOV\)</span> 网都是有向无环图，不同之处在于， <span class="arithmatex">\(AOE\)</span> 网的边有权值，而 <span class="arithmatex">\(AOV\)</span> 网无权值，仅表示顶点之间的前后关系， <span class="arithmatex">\(AOE\)</span> 网的两个性质如下：</p>
-<ul>
-<li>①只有在 <strong>某顶点所代表的事件发生后</strong> ，从该顶点出发的各有向边所代表的活动才能开始</li>
-<li>②只有在进入某顶点的各 <strong>有向边</strong> 所代表的 <strong>活动</strong> 都已 <strong>结束</strong> 时，该顶点所代表的事件才能发生。</li>
-</ul>
-<blockquote>
-<p><strong>注意</strong>
-- 在 <span class="arithmatex">\(AOE\)</span> 网中，有些活动是可以<strong>并行进行</strong>的
-- 从源点到汇点的有向路径可能有多条， 并且这些 <strong>路径长度</strong> 可能不同，因此从源点到汇点中 <strong>最大路径长度（即最大边权和）</strong> 的路径称为 <strong>关键路径</strong> ，关键路径上的活动称为 <strong>关键活动</strong> ，显然这个关键路径可能有多条
-- 只有 <strong>所有路径的活动</strong> 都完成，整个工程才算结束</p>
-</blockquote>
-<h3 id="v_k-vek">事件<span class="arithmatex">\(V_k\)</span> 的最早发生时间 <span class="arithmatex">\(Ve(K)\)</span><a class="headerlink" href="#v_k-vek" title="Permanent link">&para;</a></h3>
-<p>它是指从源点 <span class="arithmatex">\(V_1\)</span> 到顶点 <span class="arithmatex">\(V_k\)</span> 的最长路径长度。事件 <span class="arithmatex">\(V_k\)</span> 的最早发生时间决定了所有从 <span class="arithmatex">\(V_k\)</span> 开始的 活动能够开工的 <strong>最早时间</strong> 。 可用下面的边推公式来计算：
-- <span class="arithmatex">\(Ve(源点)=0\)</span>
--  <span class="arithmatex">\(Ve(k) = Max{Ve(j)+Weight(V_j,V_k)}\)</span> ，其中的 <span class="arithmatex">\(V_k\)</span> 为 <span class="arithmatex">\(V_j\)</span> 的任意后继结点， <span class="arithmatex">\(Weight(V_j,V_k)\)</span> 表示 <span class="arithmatex">\(&lt;V_j,V_k&gt;\)</span> 边上的权值</p>
-<p>简单理解一下，假设我们当前走到了点 <span class="arithmatex">\(j\)</span> ，然后我们将点 <span class="arithmatex">\(j\)</span> 的所有出度点 <span class="arithmatex">\(k\)</span> 的 <span class="arithmatex">\(Ve(k)\)</span> 值和当前 <span class="arithmatex">\(j\)</span> 点的 <span class="arithmatex">\(Ve(j)\)</span>加边权 <span class="arithmatex">\(&lt;j,k&gt;\)</span> 进行比较，如果后者大就更新为后者（<strong>就是尽可能让 <span class="arithmatex">\(Ve(k)\)</span> 更大</strong>），看到这个我们很自然想起了拓扑排序，我们可以再拓扑排序的基础上进行计算</p>
-<p>这里说一下为什么称为 <strong>最早发生时间</strong> ，毕竟刚接触怎么看都是 <strong>“最迟”</strong> ，想象一下，这个 <span class="arithmatex">\(AOE\)</span> 网是从源点出发，可能会存在多个活动并行进行的情况，但目的都是到达汇点，那么在这个过程中，可能通过某些活动（弧）早到，有的活动（弧）晚到，其中最晚到的活动（弧）就是关键活动，对于那些能 <strong>“早到”</strong> 的路径来说就会存在两个情况，是先完成活动再等待那个所谓的关键活动完成，还是先等待关键活动，然后再完成这个活动，这里先完成当前的活动就是最早发生时间，而等待后再来完成就是一个活动开始最迟时间，很显然 <strong>在关键路径上的最早发生时间和最迟发生时间是一样的</strong> </p>
-<h3 id="v_k-vlk">事件<span class="arithmatex">\(V_k\)</span> 的最迟发生事件 <span class="arithmatex">\(Vl(K)\)</span><a class="headerlink" href="#v_k-vlk" title="Permanent link">&para;</a></h3>
-<p>它是指在不推迟整个工程完成的前提下， 即保证它的后继事件 <span class="arithmatex">\(V_j\)</span> 在其最迟发生时间 <span class="arithmatex">\(Vl(j)\)</span> 能够 发生时，该事件最迟必须发生的时间 。 可用下面的递推公式来计算：
-- <span class="arithmatex">\(Vl(汇点)=Ve(汇点)\)</span>
-- <span class="arithmatex">\(Vl(k) = Min{Vl(j) + Weight(V_k,V_j)}\)</span> ，其中点 <span class="arithmatex">\(V_k\)</span> 为 <span class="arithmatex">\(V_j\)</span> 的任意前驱结点， <span class="arithmatex">\(Weight(V_k,V_j)\)</span> 表示 <span class="arithmatex">\(&lt;V_k,V_j&gt;\)</span> 边上的权值</p>
-<p>这里其实和上面流程其实是类似的，只不过需要从汇点出发一直到源点，那么这个很显然就是一个逆拓扑排序的操作，然后不断地尽可能最小化 <span class="arithmatex">\(Vl(k)\)</span> 的值，当然对于关键路径上的活动的 <span class="arithmatex">\(Vl(k)\)</span> 和 <span class="arithmatex">\(Ve(k)\)</span> 是相同的</p>
-<h3 id="a_i-ei">活动 <span class="arithmatex">\(a_i\)</span> 的最早开始时间 <span class="arithmatex">\(e(i)\)</span><a class="headerlink" href="#a_i-ei" title="Permanent link">&para;</a></h3>
-<p>它是指该活动弧的起点所表示的事件的最早发生时间。若边 <span class="arithmatex">\(＜V_k, V_j&gt;\)</span> 表示活动 <span class="arithmatex">\(a_i\)</span> ，则有 <span class="arithmatex">\(e(i) =Ve(k)\)</span></p>
-<h3 id="a_i-li">活动 <span class="arithmatex">\(a_i\)</span> 的最迟开始时间 <span class="arithmatex">\(l(i)\)</span><a class="headerlink" href="#a_i-li" title="Permanent link">&para;</a></h3>
-<p>它是指该活动弧的终点所表示 <strong>事件的最迟发生时间</strong> 与该 <strong>活动所需时间</strong> 之差。若边 <span class="arithmatex">\(＜V_k，V_j＞\)</span> 表示活动 <span class="arithmatex">\(a_i\)</span> ，则有 <span class="arithmatex">\(l(i) = vl(j) - Weight(V_k,V_j)\)</span> </p>
-<h3 id="d">活动的差额d<a class="headerlink" href="#d" title="Permanent link">&para;</a></h3>
-<p>它是指该活动完成的时间余量，即在 <strong>不增加完成整个工程所需总时间</strong> 的情况下，活动 <span class="arithmatex">\(a_i\)</span> 可以拖延的时间，若一个活动的时间余量为 <span class="arithmatex">\(0\)</span> 则说明这个活动必须要如期完成，否则会延长整个工期，换句话说就是 <strong>关键活动</strong>
-<span class="arithmatex">\(d(i) = l(i) - e(i)\)</span></p>
-<h2 id="_3">原理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>求解关键路径的算法步骤大体为五步：</p>
-<blockquote>
-<ul>
-<li>①从源点出友，令 <span class="arithmatex">\(Ve(源点) = 0\)</span>，按拓扑有序求其余顶点的最早发生时间 <span class="arithmatex">\(Ve(i)\)</span> </li>
-<li>②从汇点出友，令 <span class="arithmatex">\(Vi(汇点) = Ve(汇点)\)</span> ， 按逆拓拓扑有序求其余顶点的最迟发生时间 <span class="arithmatex">\(Vl(i)\)</span> </li>
-<li>③根据各顶点的 <span class="arithmatex">\(ve(i)\)</span> 值求所有孤的最早开始时间 <span class="arithmatex">\(e(i)\)</span> </li>
-<li>④根据各顶点的 <span class="arithmatex">\(vl(i)\)</span> 值求所有孤的最早开始时间 <span class="arithmatex">\(l(i)\)</span></li>
-<li>⑤求 <span class="arithmatex">\(AOE\)</span> 网 中所有活动的差额 <span class="arithmatex">\(d()\)</span>，找出所有 <span class="arithmatex">\(d() = 0\)</span> 的活动构成关键路径（可能不唯一）</li>
-</ul>
-</blockquote>
-<p>举例：
-<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/919ea6408cbb40819c46292c4b286792.png" /></p>
-<blockquote>
-<p>注意：
-因为 <span class="arithmatex">\(AOE\)</span> 网中的关键路径可能不唯一，提高某一个活动的效率可能并不能加快整体工程的效率
-关键路径的难点在于理解事件的 <strong>最早和最迟时间</strong></p>
-</blockquote>
-<h2 id="_4">代码实现<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>思路较为简单，且未碰到编程类的题目，博主这里就不做实现了，可以参考另一位大佬的实现代码：
-博客链接：<a href="https://blog.csdn.net/weixin_42638946/article/details/120154312">https://blog.csdn.net/weixin_42638946/article/details/120154312</a>
-<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
-<span class="cm">输出关键路径</span>
-<span class="cm">input:</span>
-<span class="cm">9 11</span>
-<span class="cm">1 2 6</span>
-<span class="cm">1 3 4</span>
-<span class="cm">1 4 5</span>
-<span class="cm">2 5 1</span>
-<span class="cm">3 5 1</span>
-<span class="cm">4 6 2</span>
-<span class="cm">5 7 9</span>
-<span class="cm">5 8 7</span>
-<span class="cm">6 8 4</span>
-<span class="cm">7 9 2</span>
-<span class="cm">8 9 4</span>
-<span class="cm">output:</span>
-<span class="cm">1 2 5 8 9 </span>
-<span class="cm">1 2 5 7 9 </span>
-
-
-<span class="cm">*/</span><span class="w"></span>
-
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
-
-<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1010</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100010</span><span class="p">;</span><span class="w"></span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">hs</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">ht</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">M</span><span class="p">],</span><span class="w"> </span><span class="n">w</span><span class="p">[</span><span class="n">M</span><span class="p">],</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">M</span><span class="p">],</span><span class="w"> </span><span class="n">idx</span><span class="p">;</span><span class="w">  </span><span class="c1">// 顶点表示事件，边表示活动</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">ve</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">vl</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w">  </span><span class="c1">// 事件允许的最早发生时间, 事件允许的最晚发生时间</span>
-<span class="c1">// int ee[M], el[M];  // 活动的最早发生时间, 活动的最晚发生时间</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w">  </span><span class="c1">// 每个点的入度</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w">  </span><span class="c1">// 拓扑排序数组</span>
-
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="p">;</span><span class="w"></span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">;</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">e</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">idx</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">topsort</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">hh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">tt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">hh</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">hh</span><span class="o">++</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hs</span><span class="p">[</span><span class="n">t</span><span class="p">];</span><span class="w"> </span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">--</span><span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">                </span><span class="n">q</span><span class="p">[</span><span class="o">++</span><span class="n">tt</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">critical_path</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">topsort</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// 求解事件允许的最早发生时间</span>
-<span class="w">    </span><span class="n">ve</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hs</span><span class="p">[</span><span class="n">ver</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">            </span><span class="n">ve</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ve</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">ve</span><span class="p">[</span><span class="n">ver</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// 求解事件允许的最晚发生时间</span>
-<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">vl</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3f</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">vl</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">vl</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ve</span><span class="p">[</span><span class="n">n</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ht</span><span class="p">[</span><span class="n">ver</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">            </span><span class="n">vl</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">vl</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">vl</span><span class="p">[</span><span class="n">ver</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">path</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hs</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hs</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="w"> </span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ne</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vl</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ve</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">j</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">path</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">hs</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">hs</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">ht</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">ht</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">add</span><span class="p">(</span><span class="n">hs</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">add</span><span class="p">(</span><span class="n">ht</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// 输入满足1号点是源点，n号点是汇点</span>
-<span class="w">    </span><span class="n">critical_path</span><span class="p">();</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
-<p>这个 <span class="arithmatex">\(AOE\)</span> 图大概长这样：
-<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/baebc3c5ebf24c9b943a25ad533dcc80.png" /></p>
+<h1 id="_1">二分算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">测试二分算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 
               
   <!-- Giscus -->
@@ -1844,6 +1703,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="页脚">
+      
+        
+        <a href="../../%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-footer__link md-footer__link--next" aria-label="下一页: 动态规划" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              动态规划
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
