@@ -1,0 +1,153 @@
+# official tutorial 
+# mkdocs-material: https://squidfunk.github.io/mkdocs-material/
+# mkdocs: https://www.mkdocs.org/user-guide/configuration/
+repo_url: https://github.com/MangataTS/Algorithm
+site_name: Algorithm
+theme:
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - header.autohide
+    - navigation.top
+    - toc.integrate
+    - content.code.annotate 
+    - toc.follow
+    - navigation.indexes
+  icon:
+    repo: fontawesome/brands/github-alt
+  logo: logo.png
+  name: material
+  favicon: logo.png
+  palette:
+    # Toggle light mode
+    - scheme: default
+      primary: black
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+    # Toggle dark mode
+    - scheme: slate
+      primary: black
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+   #  favicon: attachment/portrait.png
+  language: zh # 中文，解决中文搜索问题
+  custom_dir: overrides
+markdown_extensions: 
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - toc:
+      permalink: true
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+copyright: Copyright &copy; power by Kaptree
+
+extra_javascript:
+  - 'javascripts/cheat.js'
+  - 'javascripts/mathjax.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  #- javascripts/MathJaxTex.js
+  #- https://polyfill.io/v3/polyfill.min.js?features=es6
+  #- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  disqus: Algorithm
+
+nav:
+  - Home: index.md
+  - 语法基础: 
+    - 语法基础/专栏简介.md
+    - 语法基础/0基础C语言速通.md
+    - 语法基础/0基础Python速通.md
+  - 基础算法: 
+    - 基础算法/专栏简介.md
+    - 基础算法/前缀和与差分.md
+    - 基础算法/双指针.md
+    - 基础算法/二分算法.md
+  - 数据结构:
+    - 数据结构/专栏简介.md
+    - 数据结构/并查集.md
+    - 数据结构/单调栈.md
+    - 数据结构/ST表.md
+    - 数据结构/二叉排序树.md
+    - 数据结构/AVL平衡树.md
+    - 数据结构/B-树和B+树.md
+    - 数据结构/哈希表.md
+  - 图论:
+    - 图论/专栏简介.md
+    - 图论/建图基础.md
+    - 图论/DFS和BFS.md
+    - 图论/最短路.md
+    - 图论/最小生成树.md
+    - 图论/拓扑排序.md
+    - 图论/关键路径.md
+  - 数论:
+    - 数论/专栏简介.md
+    - 数论/基础数论.md
+  - 字符串:
+    - 字符串/专栏简介.md
+    - 字符串/KMP算法.md
+    - 字符串/Trie树.md
+  - 动态规划:
+    - 动态规划/专栏简介.md
+    - 动态规划/01背包.md
+    - 动态规划/完全背包.md
+  - 加密算法:
+    - 加密算法/专栏简介.md
+    - 加密算法/凯撒加密算法.md
+    - 加密算法/维吉尼亚加密算法.md
+    - 加密算法/Playfair加密算法.md
+    - 加密算法/希尔加密算法.md
+    - 加密算法/DES加密算法.md
+    - 加密算法/AES加密算法.md
+    - 加密算法/RSA加密算法.md
+  - 杂项:
+    - 杂项/专栏简介.md
+    - 杂项/位运算.md
+    - 杂项/STL和Algorithm.md
+  - 考研复习:
+    - 考研复习/专栏简介.md
+    - 考研复习/考研数据结构与算法（一）绪论.md
+    - 考研复习/考研数据结构与算法（二）线性表.md
+    - 考研复习/考研数据结构与算法（三）栈和队列.md
+    - 考研复习/考研数据结构与算法（四）字符串.md
+    - 考研复习/考研数据结构与算法（五）数组.md
+    - 考研复习/考研数据结构与算法（六）树与二叉树.md
+    - 考研复习/考研数据结构与算法（七）图论.md
+    - 考研复习/考研数据结构与算法（八）查找.md
+  
+
+
