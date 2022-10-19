@@ -73,7 +73,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
-copyright: Copyright &copy; power by Kaptree
+copyright: Copyright &copy; power by Alberto
 
 extra_javascript:
   - 'javascripts/cheat.js'
@@ -87,11 +87,22 @@ extra:
   disqus: self-improvement
 
 nav:
-  - Home: 测试/测试程序.md
-  - 语法基础: 
-    - 算法2/二分算法.md
-    - 算法2/动态规划.md
-    - 测试/测试程序.md
+  - Home: index.md
+  - C语言: 
+    - C语言/1.初识C语言.md
+    - C语言/2.分支和循环语句.md
+    - C语言/3.函数.md
+    - C语言/4.数组.md
+    - C语言/5.操作符详解.md
+    - C语言/6.结构体.md
+    - C语言/7.实用调试技巧.md
+    - C语言/8.数据的存储.md
+    - C语言/9.指针的进阶.md
+    - C语言/10.字符串和内存函数.md
+    - C语言/11.自定义函数(结构体+枚举+联合).md
+    - C语言/12.动态内存管理.md
+    - C语言/13.程序的编译(预处理+链接).md
+    - C语言/14.文件操作.md
   - 基础算法: 
     - 测试/测试程序.md
     - 测试/测试程序.md
