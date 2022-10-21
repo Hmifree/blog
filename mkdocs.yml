@@ -73,7 +73,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
-copyright: Copyright &copy; power by Alberto
+copyright: Copyright &copy; power by Alberto 蜀ICP备2022025020号
 
 extra_javascript:
   - 'javascripts/cheat.js'
